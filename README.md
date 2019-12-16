@@ -7,3 +7,5 @@ Observação: Comparando com o código original deixei de fora apenas o mixin qu
 No meu css existem alguns prefixadores adicionais por estar ultilizando o plugin "gulp-autoprefixer". As configurações e plugins utilizados podem ser conferidos no gulpfile.js e package.json
 
 [Font: https://www.toptal.com/sass/css3-flexbox-sass-grid-tutorial](https://www.toptal.com/sass/css3-flexbox-sass-grid-tutorial)
+
+![Imagem do Grid](https://github.com/alexandrebatista2014/grid-flexbox-sass/blob/a3cb8653b5d28b0bbf2c77a2aaff6d640d5869b6/grid.jpg)
