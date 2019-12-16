@@ -1,0 +1,69 @@
+/*Estudo de grid retirado do site https://www.toptal.com/sass/css3-flexbox-sass-grid-tutorial */
+/*Autor: Juan Varela*/
+
+// Variável
+$grid__cols: 12;
+$grid__bp-sm: 576;
+$grid__bp-md: 768;
+$grid__bp-lg: 992;
+$grid__bp-xl: 1200;
+
+// Mapa
+$map-grid-props: (
+        '': 0,
+        '-sm': $grid__bp-sm,
+        '-md': $grid__bp-md,
+        '-lg': $grid__bp-lg,
+        '-xl': $grid__bp-xl
+);
+
+// Container
+.container {
+  max-width: $grid__bp-md * 1px;
+  margin: 0 auto;
+  &-fluid {
+    margin: 0;
+    max-width: 100%;
+  }
+}
+
+// linhas
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+@mixin create-mq($breakpoint) {
+  @if ($breakpoint == 0) {
+    @content;
+  }
+  @else {
+    @media screen and(min-width:$breakpoint * 1px) {
+      @content;
+    }
+  }
+}
+
+@mixin create-col-classes($modifier, $grid-cols, $breakpoint) {
+  @include create-mq($breakpoint) {
+    .col#{$modifier}-offset-0 {
+      margin-left: 0;
+    }
+    @for $i from 1 through $grid-cols {
+      .col#{$modifier}-#{$i} {
+        // flex-basis: (100 / ($grid-cols / $i) ) * 1%;  *** usando formula
+        flex-basis: percentage($i / $grid-cols);  // usando função do sass
+        max-width: (100 / ($grid-cols / $i) ) * 1%;
+      }
+      .col#{$modifier}-offset-#{$i} {
+        margin-left: (100 / ($grid-cols / $i) ) * 1%;
+      }
+    }
+  }
+}
+
+@each $modifier , $breakpoint in $map-grid-props {
+  @include create-col-classes($modifier, $grid__cols, $breakpoint);
+}
+
